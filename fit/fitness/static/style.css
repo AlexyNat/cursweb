@@ -40,7 +40,24 @@ footer {
     border: 1px solid black;
 }
 
-.subscriptionViewControl {
+.subscriptionView p {
+    padding-bottom: 2px;
+}
+
+.subscriptionViewControl p {
+    font-size: 1.2em;
+}
+
+.subscriptionViewControl p:hover {
+
+}
+
+.subscriptionViewControl p a {
+    text-decoration: none;
+}
+
+.subscriptionViewControl p a:hover {
+    text-decoration: underline;
 
 }
 
@@ -86,4 +103,17 @@ footer {
     border: 1px solid black;
     border-radius: 2%;
     padding: 2%;
+}
+
+.registrationForm {
+    margin-left: 25%;
+    margin-top: 10px;
+    width:50%;
+    border: 1px solid black;
+    border-radius: 2%;
+    padding: 2%;
+}
+
+.registrationForm p {
+    padding: 5px;
 }

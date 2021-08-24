@@ -6,14 +6,16 @@
 <div class="subscriptionView">
 
     <p> {{ Sub }}    </p>
-    <p> {{ Sub.startUse }}  </p>
-    <p> {{ Sub.type }}      </p>
+    <p>Дата начала использования: {{ Sub.startUse }}  </p>
+    <p>Тип абонемента: {{ Sub.type }}    </p>
+    <p>Абонемент до: {{ Sub.GetEnd }}      </p>
 
     <div class="subscriptionViewControl">
-    <p><a href="{% url 'pdfView' %}">Печать абонемента</a></p>
-    <p><a href="{% url 'delete' %}">Удалить абонемент</a></p>
-    <p><a href="{% url 'index' %}">На главную</a></p>
+        <p><a href="{% url 'pdfView' %}">Печать абонемента</a></p>
+        <p><a href="{% url 'delete' %}">Удалить абонемент</a></p>
+        <p><a href="{% url 'home' %}">Личный кабинет</a></p>
     </div>
+
 </div>
 
 {% endblock content %}

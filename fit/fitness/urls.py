@@ -7,21 +7,27 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('profile/', views.profile, name='home'),
 
-    path('deleteTypeSub/<str:name>/', views.deleteSubType, name='deletetypesub'),
-    path('createTypeSub', views.createSubType, name='createtypesub'),
-    path('editTypeSub/<str:name>/', views.editSubType, name='editetypesub'),
+    path('profile/deleteTypeSub/<str:name>/', views.deleteSubType, name='deletetypesub'),
+    path('profile/createTypeSub', views.createSubType, name='createtypesub'),
+    path('profile/editTypeSub/<str:name>/', views.editSubType, name='editetypesub'),
 
 
-    path('records/', views.ScheduleView, name='records'),
-    path('createRecord/', views.ScheduleCreate, name='createRecord'),
-    path('deleteRecord/<int:id>', views.ScheduleDelete, name='deleteRecord'),
+    path('profile/records/', views.ScheduleView, name='records'),
+    path('profile/records/createRecord/', views.ScheduleCreate, name='createRecord'),
+    path('profile/records/deleteRecord/<int:id>', views.ScheduleDelete, name='deleteRecord'),
 
-    path('report/index/', views.reportIndex, name='report'),
 
+    # отчет
+    path('profile/report/index/', views.reportIndex, name='report'),
+
+
+    path('profile/createabon/', views.createSubscription, name='createabon'),
+    path('profile/subscription/', views.SubscriptionView, name='subscription'),
+    path('profile/pdfView/', views.pdfView, name='pdfView'),
+    path('profile/deleteSubscription/', views.deleteSubscription, name='delete'),
+
+    # регистрация через свою модель
     path('registration/', views.register, name='signup'),
-    path('createabon/', views.createSubscription, name='createabon'),
-    path('subscription/', views.SubscriptionView, name='subscription'),
-    path('pdfView/', views.pdfView, name='pdfView'),
-    path('deleteSubscription/', views.deleteSubscription, name='delete'),
+    # стандарные пресеты
     path('accounts/', include('django.contrib.auth.urls'), name='accounts'),
 ]

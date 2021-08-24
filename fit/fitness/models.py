@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.contrib import admin
-from datetime import date
+from dateutil.relativedelta import relativedelta
 from django.utils import timezone
 
 
@@ -11,7 +11,7 @@ class Profile(AbstractUser):
     genders = (('М', 'Мужчина'), ('Ж', 'Женщина'))
     location = models.CharField(max_length=150, blank=True, verbose_name='Адрес')
     birth_date = models.DateField(null=True, blank=True, verbose_name='Дата рождения')
-    gender = models.CharField('Пол', choices=genders, max_length=1)
+    gender = models.CharField('Пол', choices=genders, max_length=1, default='М')
 
     def __str__(self):
         return self.username
@@ -44,6 +44,17 @@ class Subscription(models.Model):
     @admin.display(description='Тип абонемента')
     def GetName(self):
         return self.type.name
+
+    @admin.display(description='Срок действия')
+    def GetEnd(self):
+        if self.type.duration == 'Год':
+            return self.startUse + relativedelta(year=self.startUse.year + 1)
+        elif self.type.duration == 'Пол':
+            return self.startUse + relativedelta(month=self.startUse.mounth + 6)
+        elif self.type.duration == 'Мес':
+            return self.startUse + relativedelta(month=self.startUse.mounth + 1)
+        else:
+            return self.startUse + relativedelta(day=self.startUse.day + 1)
 
     class Meta:
         verbose_name = 'Абонемент'
@@ -95,5 +106,3 @@ class Gym(models.Model):
 
     def __str__(self):
         return self.name
-
-

@@ -10,7 +10,7 @@
     <header>
         {% block header %}
 
-            <h1>Фитнес клуб</h1>
+        <h1><a href="/">Фитнес клуб</a></h1>
 
             {% if user.is_authenticated %}
             <div id="login">
@@ -22,6 +22,7 @@
             <div id="login">
                 <p> Вы не авторизаванны </p><br>
                 <p> <a href="{% url 'login' %}">Вход</a></p>
+                <p> <a href="{% url 'signup' %}">Регистрация</a></p>
                 <p> <a href="{% url 'index' %}">На главную</a></p>
             </div>
             {% endif %}

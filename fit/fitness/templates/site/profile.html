@@ -29,7 +29,24 @@
 
 
 {% else %}
-    <p id="title_profile">Данные </p>
+    <p id="title_profile">Данные о пользователе </p>
+
+    <div class="dataProfile">
+        <ul>
+            <h3>Логин {{ user|title }}</h3>
+            <li>Место жительства {{ user.location  }}</li>
+            <li>Дата рождения {{ user.birth_date  }}</li>
+            <li>Пол
+                {% if user.gender == 'М' %}
+                Мужской
+                {% else %}
+                Женский
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+
     {% if Sub %}
         <ul>
             <li><a href="{% url 'subscription' %}">Посмотреть абонемент </a></li>

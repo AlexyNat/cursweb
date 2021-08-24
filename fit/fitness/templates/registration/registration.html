@@ -11,14 +11,13 @@
 
 
   <h2>Регистрация</h2>
-
- <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Подтверждение</button>
-  </form>
-
-
+    <div class="registrationForm">
+         <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Подтверждение</button>
+          </form>
+    </div>
 {% endif %}
 
 <p><a href="{% url 'index' %}">На главную</a></p>

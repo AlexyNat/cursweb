@@ -4,6 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from .models import Subscription, TypeSubscription, Schedule
 from reportlab.pdfgen import canvas
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
 from django.http import HttpResponse
 
 
@@ -37,7 +39,7 @@ def register(request):
             return redirect('home')
     else:
         form = UserRegistrationForm()
-    return render(request, 'site/registration.html', {'form': form, 'title': 'Регистрация'})
+    return render(request, 'registration/registration.html', {'form': form, 'title': 'Регистрация'})
 
 
 def createSubscription(request):
@@ -76,15 +78,19 @@ def deleteSubscription(request):
 
 def pdfView(request):
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
-
     subscription = Subscription.objects.filter(profile=request.user).first()
 
     p = canvas.Canvas(response)
+    p.setTitle('Абонемент')
+    pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
+    p.setFont('Vera', 15)
 
-    p.drawString(100, 0, str(subscription.startUse))
-    p.drawString(0, 100, subscription.type.name)
-    p.drawString(0, 200, subscription.profile.username)
+    p.drawString(15, 660, 'Логин: ' + request.user.username)
+    p.drawString(15, 640, 'Пол: ' + request.user.gender)
+    p.drawString(15, 620, 'Место жительства: ' + request.user.location)
+    p.drawString(15, 600, 'Дата рождения: ' + str(request.user.birth_date))
+    p.drawString(15, 580, 'Название абонемента: ' + subscription.type.name)
+    p.drawString(15, 560, 'Дата начала использования абонемента: ' + str(subscription.startUse))
 
     p.showPage()
     p.save()
@@ -132,7 +138,7 @@ def editSubType(request, name):
 
     else:
         val = TypeSubscription.objects.get(name=name)
-        data = {'name': val.name, 'price': val.price, 'description': val.price, 'duration': val.duration}
+        data = {'name': val.name, 'price': val.price, 'description': val.description, 'duration': val.duration}
         form = TypeSubscriptionForm(initial=data)
 
     return render(request, 'site/createabon.html', {'form': form})

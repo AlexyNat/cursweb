@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <p>Страница авторизации</p>
+{% endblock header %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<p>Вы уже авторизованы</p>
+
+{% else %}
+
+<h2>Вход</h2>
+<form class="formLogin" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Вход</button>
+</form>
+
+{% endif %}
+
+<a href="{% url 'index' %}">На главную</a>
+{% endblock content %}

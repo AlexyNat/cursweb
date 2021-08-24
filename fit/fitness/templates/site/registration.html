@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<p>{{ user.username }} вы авторизированы</p>
+<p><a href="{% url 'home' %}">Профиль</a></p>
+
+{% else %}
+
+
+  <h2>Регистрация</h2>
+
+ <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Подтверждение</button>
+  </form>
+
+
+{% endif %}
+
+<p><a href="{% url 'index' %}">На главную</a></p>
+
+{% endblock content %}

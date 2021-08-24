@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Подтверждение</button>
+</form>
+
+
+
+<a href="{% url 'index' %}">На главную</a>
+
+
+{% endblock content %}

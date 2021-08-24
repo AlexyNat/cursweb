@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="subscriptionView">
+
+    <p> {{ Sub }}    </p>
+    <p> {{ Sub.startUse }}  </p>
+    <p> {{ Sub.type }}      </p>
+
+    <div class="subscriptionViewControl">
+    <p><a href="{% url 'pdfView' %}">Печать абонемента</a></p>
+    <p><a href="{% url 'delete' %}">Удалить абонемент</a></p>
+    <p><a href="{% url 'index' %}">На главную</a></p>
+    </div>
+</div>
+
+{% endblock content %}

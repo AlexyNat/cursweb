@@ -1,0 +1,89 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+header {
+    height: 100px;
+    padding: 10px;
+    background-color: yellow;
+}
+
+footer {
+    height: 100px;
+    background-color: yellow;
+    margin-top: 30%;
+}
+
+#login {
+    top:5px;
+    position: absolute;
+    left: 90%;
+}
+
+.formLogin {
+    width: 50xp;
+    margin-left:25%;
+    margin-right:25%;
+    padding:10px;
+    border: 1px solid black;
+}
+
+.subscriptionView {
+    width: 50xp;
+    margin-left:25%;
+    margin-right:25%;
+    margin-top:10px;
+    padding:20px;
+    border: 1px solid black;
+}
+
+.subscriptionViewControl {
+
+}
+
+.typesub {
+    border: 1px solid black;
+}
+
+.profile {
+    margin-top: 10px;
+    width: 50%;
+    margin-left: 25%;
+    padding: 2%;
+    border: 1px solid black;
+    border-radius: 2%;
+}
+
+.profile #title_profile {
+    text-align: center;
+}
+
+.recordView {
+    margin-left: 25%;
+    margin-top: 10px;
+    width:50%;
+    border: 1px solid black;
+    border-radius: 2%;
+    padding: 2%;
+}
+
+.record {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 2%;
+}
+
+
+.reportContent {
+    margin-left: 25%;
+    margin-top: 10px;
+    width:50%;
+    border: 1px solid black;
+    border-radius: 2%;
+    padding: 2%;
+}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="profile">
+{% if Роль == 'Администратор' %}
+
+    <p>Привет, администратор {{ user|title }}</p>
+
+    <p><a href="{% url 'report' %}">Отчет загруженности</a><p>
+
+    <p>Выды абонементов ({{ TypeSubs|length }} всего) </p>
+    <p> <a href="{% url 'createtypesub' %}">Добавить абонемент</a> </p>
+    {% for sub in TypeSubs %}
+
+        <div class="typesub">
+            <p>{{forloop.counter}}</p>
+            <p>Название {{ sub }} </p>
+            <p>Цена {{ sub.price }} руб</p>
+            <p>Время действия {{ sub.duration}} </p>
+            <p> <a href="{% url 'editetypesub' sub.name %}">Изменить абонемент</a> </p>
+            <p> <a href="{% url 'deletetypesub' sub.name %}">Удалить абонемент</a> </p>
+        </div>
+
+    {% endfor %}
+
+
+{% else %}
+    <p id="title_profile">Данные </p>
+    {% if Sub %}
+        <ul>
+            <li><a href="{% url 'subscription' %}">Посмотреть абонемент </a></li>
+            <li><a href="{% url 'records' %}">Посмотреть записи </a></li>
+        </ul>
+    {% else %}
+        <p>Нет абонемента</p>
+        <a href="{% url 'createabon' %}">Создать абонемент</a>
+    {% endif %}
+
+{% endif %}
+
+</div>
+{% endif %}
+<p><a href="{% url 'index' %}">На главную</a></p>
+{% endblock content %}

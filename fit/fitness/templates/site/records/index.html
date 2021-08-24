@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="recordView">
+
+    <p><a href="{% url 'createRecord' %}">Создать запись</a></p>
+
+    {% for record in Recs %}
+
+        <div class="record">
+            <p>{{ record }} </p>
+            <p>Время занятия</p>
+                <ul>
+                    <li>Дата: {{ record.recordStartData }}</li>
+                    <li>Время: {{ record.recordStartTime }}</li>
+                </ul>
+            <p>Время окончания</p>
+                <ul>
+                    <li>Дата: {{ record.End.date }}</li>
+                    <li>Время: {{ record.End.time }}</li>
+                </ul>
+            <p>Зал:  {{ record.gym }}     </p>
+            <p><a href="{% url 'deleteRecord' record.id  %}">Удалить запись</a></p>
+        </div>
+    {% empty %}
+        <p>Записей нет</p>
+    {% endfor %}
+
+
+    <div class="recordViewControl">
+        <p><a href="{% url 'index' %}">На главную</a></p>
+    </div>
+</div>
+
+{% endblock content %}

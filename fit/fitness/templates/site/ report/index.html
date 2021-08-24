@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="reportContent">
+
+{% if form %}
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Подтверждение</button>
+</form>
+
+{% else %}
+
+    <p>Отчет с {{ range.0}} до {{ range.1 }} </p>
+    <p>{{ count }} Запись {{ count|pluralize }}</p>
+
+{% endif %}
+
+    <p><a href="{% url 'home' %}">Личный кабинет</a></p>
+
+</div>
+
+{% endblock content %}
